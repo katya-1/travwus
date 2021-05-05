@@ -79,6 +79,8 @@ definitions:
   ErrorResponse:
     required:
       - message
+    required:
+      - message
     properties:
       message:
         type: string

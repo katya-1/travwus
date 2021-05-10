@@ -11,6 +11,8 @@
   It is a good idea to list the modules that your application depends on in the package.json in the project root
  */
 var util = require('util');
+const chance = new require("chance").Chance();
+var faker = require('faker');
 
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
@@ -25,7 +27,7 @@ var util = require('util');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  hello: hello
+  todays: gettodays
 };
 
 /*
@@ -34,11 +36,21 @@ module.exports = {
   Param 1: a handle to the request object
   Param 2: a handle to the response object
  */
-function hello(req, res) {
+function gettodays(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-  var name = req.swagger.params.name.value || 'stranger';
-  var hello = util.format('Hello, %s!', name);
+  var date = req.swagger.params.date.value || '2021-05-15';
 
   // this sends back a JSON response which is a single string
-  res.json(hello);
+  res.json(
+    [
+      {
+        "id": "" + faker.random.number(),
+        "date": date,
+        "artist": "" + faker.name.findName(),
+        "start-time": "" + chance.hour({twentyfour: true})+":00",
+        "price":" " + chance.dollar({min : 5 , max: 100}),
+        "location": "" + faker.address.streetAddress(),
+        "discription":"" + chance.paragraph({ sentences: 5 })  
+        }
+       ] );
 }

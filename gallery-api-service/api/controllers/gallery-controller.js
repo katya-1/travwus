@@ -29,6 +29,9 @@ var faker = require('faker');
 module.exports = {
   todays: gettodays
 };
+module.exports = {
+  events: getEvents
+};
 
 /*
   Functions in a127 controllers used for operations should take two parameters:
@@ -53,4 +56,56 @@ function gettodays(req, res) {
         "discription":"" + chance.paragraph({ sentences: 5 })  
         }
        ] );
+}
+
+String.prototype.correctForm = function () {
+  return this.split("/").reverse().join("-");
+};
+function getEvents(req, res) {
+// variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+var date = req.swagger.params.date.value || '2021-05-09';
+
+// this sends back a JSON response which is a single string
+res.json([
+  {
+    id: "" + faker.random.number(),
+    name: faker.name.findName(),
+    theme: faker.lorem.word(),
+    price: chance.minute(), 
+    location: faker.address.cityName() + ', ' + faker.address.streetAddress(),
+    randomDate: chance
+      .date({ year: 2021, string: true, american: false })
+      .correctForm(),
+  },
+  {
+    id: "" + faker.random.number(),
+    name: faker.name.findName(),
+    theme: faker.lorem.word(),
+    price: chance.minute(), 
+    location: faker.address.cityName() + ', ' + faker.address.streetAddress(),
+    randomDate: chance
+      .date({ year: 2021, string: true, american: false })
+      .correctForm(),
+  },
+  {
+    id: "" + faker.random.number(),
+    name: faker.name.findName(),
+    theme: faker.lorem.word(),
+    price: chance.minute(), 
+    location: faker.address.cityName() + ', ' + faker.address.streetAddress(),
+    randomDate: chance
+      .date({ year: 2021, string: true, american: false })
+      .correctForm(),
+  },
+  {
+    id: "" + faker.random.number(),
+    name: faker.name.findName(),
+    theme: faker.lorem.word(),
+    price: chance.minute(), 
+    location: faker.address.cityName() + ', ' + faker.address.streetAddress(),
+    randomDate: chance
+      .date({ year: 2021, string: true, american: false })
+      .correctForm(),
+  },
+])
 }

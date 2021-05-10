@@ -21,3 +21,17 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
     console.log('try this:\ncurl http://127.0.0.1:' + port + '/api/v1/today?date=2021-05-15');
   }
 });
+
+SwaggerExpress.create(config, function(err, swaggerExpress) {
+  if (err) { throw err; }
+
+  // install middleware
+  swaggerExpress.register(app);
+
+  var port = process.env.PORT || 10020;
+  app.listen(port);
+
+  if (swaggerExpress.runner.swagger.paths['/events']) {
+    console.log('try this:\ncurl http://127.0.0.1:' + port + '/api/v2/events?date=2021-05-09');
+  }
+});

@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import WeeklyScheduler from "./components/WeeklyScheduler";
+import CurrentEventsProgress from "components/CurrentEventsProgress";
 
 import {
   BrowserRouter as Router,
@@ -24,6 +25,9 @@ function App() {
             </li>
             <li>
               <Link to="/timetable">Day scheduler</Link>
+            </li>
+            <li>
+              <Link to="/highlights">Weekly highlights</Link>
             </li>
           </ul>
         </nav>

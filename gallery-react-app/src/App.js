@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import WeeklyScheduler from "./components/WeeklyScheduler";
-import PhotoWeather from "components/PhotoWeather";
+import Today from "components/Today";
 import DayWeather from "components/DayWeather";
 import {
   BrowserRouter as Router,
@@ -24,7 +24,7 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/timetable">Highlights weather</Link>
+              <Link to="/today">Highlights weather</Link>
             </li>
             <li>
               <Link to="/highlights">Weekly weather</Link>
@@ -46,11 +46,11 @@ function App() {
               <Route path="/about">
                 <About />
               </Route>
-              <Route path="/timetable/:id">
-                <PhotoWeather />
+              <Route path="/today/:id">
+                <Today />
               </Route>
-              <Route path="/timetable">
-                <Redirect to={`/timetable/${moment().format("YYYY-MM-DD")}`} />
+              <Route path="/today">
+                <Redirect to={`/today/${moment().format("YYYY-MM-DD")}`} />
               </Route>
 
               <Route path="/highlights">
@@ -67,7 +67,7 @@ function App() {
                   Our service will help you find out the weather for a week by clicking on the link{" "} 
                   <Link to="/highlights">weather</Link> on week, or{" "}, 
                   for a day <Link to="/day">hour weather</Link>
-                  or see the best weather photos <Link to="/timetable">highlights weather</Link>
+                  or see the best weather photos <Link to="/today">highlights weather</Link>
                   <h3>Enjoy using!</h3>
                 </p>
               </Route>

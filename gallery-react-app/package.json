@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "rm -rf gen/api && openapi-generator-cli generate --input-spec E:/task/it-project/weather-api-service/gen/openapi.json --generator-name typescript-fetch --output gen/api --config api.json && cd gen/api && npm install"
+    "api": " openapi-generator-cli generate --input-spec ../gallery-api-service/gen/openapi.json --generator-name typescript-fetch --output gen/api --config api.json && cd gen/api && npm install"
   },
   "eslintConfig": {
     "extends": [

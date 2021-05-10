@@ -6,24 +6,24 @@ import Moment from "react-moment";
 
 const api = new Api.DefaultApi();
 
-class PhotoWeather extends React.Component {
+class Today extends React.Component {
   constructor(props) {
     super(props);
     const id = this.props.match?.params.id || moment().format("YYYY-MM-DD");
     console.log(id);
     this.state = {
-      weathers: [],
+      todays: [],
       targetDate: id,
     };
     this.handleReload = this.handleReload.bind(this);
     this.handleReload();
   }
 
-  async handleReload(weather) {
-    const response = await api.weathers({
+  async handleReload(today) {
+    const response = await api.todays({
       date: this.state.targetDate,
     });
-    this.setState({ weathers: response });
+    this.setState({ todays: response });
   }
 
   render() {
@@ -36,11 +36,10 @@ class PhotoWeather extends React.Component {
           <Moment format="YYYY/MM/DD">{this.state.targetDate}</Moment>{" "}
         </h3>
         <ul>
-          {this.state.weathers.map((weather) => (
-            <div class="photo-txt" key={weather.id}>
-              <img src={weather.image} alt="тут должна быть картинка"></img>
-              <p>At the address {weather.location}</p>
-              {weather.temperature}°C on {weather.date}
+          {this.state.todays.map((today) => (
+            <div class="photo-txt" key={today.id}>
+              <p>At the address {today.location}</p>
+               on {today.date}
             </div>
           ))}
         </ul>
@@ -49,4 +48,4 @@ class PhotoWeather extends React.Component {
   }
 }
 
-export default withRouter(PhotoWeather);
+export default withRouter(Today);

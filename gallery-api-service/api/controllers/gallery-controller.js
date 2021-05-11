@@ -57,6 +57,7 @@ function gettodays(req, res) {
         }
        ] );
 }
+
 String.prototype.correctForm = function () {
   return this.split("/").reverse().join("-");
 };
@@ -106,6 +107,5 @@ res.json([
       .date({ year: 2021, string: true, american: false })
       .correctForm(),
   },
-]
+])
 }
-

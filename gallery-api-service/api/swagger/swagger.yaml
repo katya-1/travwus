@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  version: "0.1.0"
+  version: "0.0.1"
   title: Hello our Gallery service
 # during dev, should point to your local machine
 host: localhost:10010
@@ -24,19 +24,6 @@ paths:
       description: Returns list of exhibition of paintings on weekly
       # used as the method name of the controller
       operationId: events
-      parameters:
-        - name: date
-          in: query
-          description: Filtering date
-          required: false
-          type: string
-      responses:
-        "200":
-          description: Success
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /today:
     # binds a127 app logic to a route
     x-swagger-router-controller: gallery-controller
@@ -61,10 +48,52 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+      parameters:
+        - name: date
+          in: query
+          description: Filtering date
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/TodaysResponse"
+            $ref: "#/definitions/EventsResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/ErrorResponse"          
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+
+  EventsResponse:
+      type: array
+      items:
+        $ref:  "#/definitions/Event"
+        
+  Event:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      name:
+        type: string 
+      theme:
+        type: string
+      price:
+        type: integer
+      location:
+        type: string
+      randomDate:
+        type: string
+        
   TodaysResponse:
       type: array
       items:

@@ -60,7 +60,6 @@ function gettodays(req, res) {
 String.prototype.correctForm = function () {
   return this.split("/").reverse().join("-");
 };
-
 function getEvents(req, res) {
 // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
 var date = req.swagger.params.date.value || '2021-05-09';
@@ -107,6 +106,6 @@ res.json([
       .date({ year: 2021, string: true, american: false })
       .correctForm(),
   },
-])
+]
 }
 
